@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
@@ -32,6 +32,11 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <Link to="/auth">
+              <Button variant="outline" size="icon">
+                <User className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
