@@ -38,13 +38,8 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      {/* CORREÇÃO: Remove a classe 'px-4' da seção principal para que o carrossel ocupe a largura total no mobile */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-background via-secondary/30 to-background">
-        
-        {/* O carrossel (e seu conteúdo) agora usam 'w-full' e o contêiner 'container' foi movido/adaptado */}
         <div className="w-full mx-auto md:container md:px-4 space-y-10">
-          
-          {/* O CarouselHero já tem w-full/max-w-full, agora ele se expandirá para as bordas */}
           <CarouselHero />
 
           <div className="max-w-4xl mx-auto text-center pt-4 px-4 md:px-0"> {/* Adiciona padding de volta para o texto */}
@@ -55,13 +50,13 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/catalogo">
                 <Button size="lg" className="text-lg px-8">
-                  <ShoppingBag className="mr-2 h-5 w-5" />
+                  <ShoppingBag className="mr-2 h-15 w-15" />
                   Ver Catálogo
                 </Button>
               </Link>
               <Link to="/promocoes">
                 <Button size="lg" variant="outline" className="text-lg px-8">
-                  <Star className="mr-2 h-5 w-5" />
+                  <Star className="mr-2 h-15 w-15" />
                   Promoções
                 </Button>
               </Link>
@@ -73,7 +68,7 @@ const Index = () => {
       {/* Features */}
       <section className="py-16 px-4 bg-muted/50">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8"> {/* Ajustado para 4 colunas */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
             <Card className={hoverClasses}>
               <CardContent className="pt-6 text-center">
                 <Truck className="h-12 w-12 text-accent mx-auto mb-4" />
@@ -87,9 +82,9 @@ const Index = () => {
             <Card className={hoverClasses}>
               <CardContent className="pt-6 text-center">
                 <CreditCard className="h-12 w-12 text-accent mx-auto mb-4" />
-                <h3 className="font-semibold text-lg mb-2">Pagamento Facilitado</h3>
+                <h3 className="font-semibold text-lg mb-2">Tradição que você confia</h3>
                 <p className="text-sm text-muted-foreground">
-                  Aceitamos todos os cartões e pix na loja física.
+                  Mais de 40 anos servindo com excelência
                 </p>
               </CardContent>
             </Card>
