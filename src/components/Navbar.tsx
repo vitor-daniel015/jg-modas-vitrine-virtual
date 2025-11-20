@@ -30,11 +30,6 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link to="/auth">
-              <Button variant="outline" size="icon">
-                <User className="h-4 w-4" />
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}

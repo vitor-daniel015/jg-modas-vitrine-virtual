@@ -9,42 +9,56 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query"; // Importa useQuery
+import { supabase } from "@/integrations/supabase/client";
+import { Loader2 } from "lucide-react";
 
-// Defina as URLs das imagens. Use placeholders temporários que mantêm o aspecto 16:9.
-// Em um projeto real, essas imagens viriam do Supabase Storage.
-const SLIDES = [
-  {
-    id: 1,
-    url: "https://placehold.co/1600x900/389250/ffffff?text=Novidades+Masculinas",
-    alt: "Novidades Masculinas",
-  },
-  {
-    id: 2,
-    url: "https://placehold.co/1600x900/141414/ffffff?text=Linha+Feminina+Selecionada",
-    alt: "Linha Feminina Selecionada",
-  },
-  {
-    id: 3,
-    url: "https://placehold.co/1600x900/20140A/ffffff?text=Estilo+e+Qualidade",
-    alt: "Estilo e Qualidade",
-  },
-  {
-    id: 4,
-    url: "https://placehold.co/1600x900/301595/ffffff?text=Roupas+Modernas",
-    alt: "Roupas Modernas",
-  },
-  {
-    id: 5,
-    url: "https://placehold.co/1600x900/000000/ffffff?text=Melhores+Preços",
-    alt: "Melhores Preços",
-  },
-];
+// Placeholder estático removido
 
 export const CarouselHero = () => {
   // Configuração do Autoplay: toca a cada 5 segundos e interrompe no hover
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
+
+  // NOVO: Busca dinâmica dos slides
+  const { data: slides, isLoading } = useQuery({
+    queryKey: ['hero_slides'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('hero_slides')
+        .select('*')
+        .order('display_order'); 
+      if (error) {
+        console.error("Erro ao carregar slides do carrossel:", error);
+        return [];
+      }
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64 bg-secondary rounded-lg">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
+      </div>
+    );
+  }
+
+  const slidesToShow = slides || [];
+
+  // Se não houver slides no banco, mostra um placeholder informativo.
+  if (slidesToShow.length === 0) {
+    return (
+        <AspectRatio ratio={16 / 9} className="rounded-lg bg-gray-200 flex items-center justify-center">
+            <div className="text-center p-4">
+                <h2 className="text-xl font-bold text-gray-700">Carrossel Vazio</h2>
+                <p className="text-gray-500">Adicione slides através do Painel Administrativo.</p>
+            </div>
+        </AspectRatio>
+    );
+  }
+
 
   return (
     <Carousel
@@ -56,12 +70,12 @@ export const CarouselHero = () => {
     >
       <div className="relative w-full overflow-hidden rounded-lg shadow-xl">
         <CarouselContent>
-          {SLIDES.map((slide) => (
+          {slidesToShow.map((slide) => (
             <CarouselItem key={slide.id}>
               <AspectRatio ratio={16 / 9}>
                 <img
-                  src={slide.url}
-                  alt={slide.alt}
+                  src={slide.image_url} // Fonte de imagem agora é dinâmica
+                  alt={slide.alt_text || 'Imagem de Carrossel JG Modas'} // Alt text dinâmico
                   className="w-full h-full object-cover rounded-lg"
                 />
               </AspectRatio>

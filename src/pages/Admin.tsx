@@ -9,6 +9,7 @@ import ProductsManager from '@/components/admin/ProductsManager';
 import CategoriesManager from '@/components/admin/CategoriesManager';
 import ReviewsManager from '@/components/admin/ReviewsManager';
 import StoreInfoManager from '@/components/admin/StoreInfoManager';
+import CarouselManager from '@/components/admin/CarouselManager'; // NOVO: Importa o Gerenciador de Carrossel
 
 export default function Admin() {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -21,13 +22,7 @@ export default function Admin() {
   }, [user, isAdmin, loading, navigate]);
 
   const handleSignOut = async () => {
-    const { error } = await signOut();
-    if (error) {
-      toast.error('Erro ao sair');
-    } else {
-      toast.success('Logout realizado com sucesso');
-      navigate('/');
-    }
+    navigate('/');
   };
 
   if (loading) {
@@ -55,12 +50,14 @@ export default function Admin() {
       </header>
       
       <main className="container mx-auto px-4 py-8">
+        {/* Atualizado para 5 abas */}
         <Tabs defaultValue="products" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="products">Produtos</TabsTrigger>
             <TabsTrigger value="categories">Categorias</TabsTrigger>
             <TabsTrigger value="reviews">Avaliações</TabsTrigger>
             <TabsTrigger value="store">Loja</TabsTrigger>
+            <TabsTrigger value="carousel">Carrossel</TabsTrigger>
           </TabsList>
           
           <TabsContent value="products">
@@ -77,6 +74,10 @@ export default function Admin() {
           
           <TabsContent value="store">
             <StoreInfoManager />
+          </TabsContent>
+          
+          <TabsContent value="carousel">
+            <CarouselManager />
           </TabsContent>
         </Tabs>
       </main>

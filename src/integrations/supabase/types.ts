@@ -38,6 +38,30 @@ export type Database = {
         }
         Relationships: []
       }
+      // NOVO: Definição da tabela do carrossel
+      hero_slides: {
+        Row: {
+          id: string
+          image_url: string
+          alt_text: string | null
+          display_order: number
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          image_url: string
+          alt_text?: string | null
+          display_order: number
+          created_at?: string | null
+        }
+        Update: {
+          image_url?: string
+          alt_text?: string | null
+          display_order?: number
+          created_at?: string | null
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           category_id: string | null
@@ -166,6 +190,25 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      todos: { 
+        Row: {
+          id: number
+          user_id: string
+          task: string
+          is_complete: boolean
+          created_at: string
+        }
+        Insert: {
+          user_id: string
+          task: string
+          is_complete?: boolean
+        }
+        Update: {
+          task?: string
+          is_complete?: boolean
         }
         Relationships: []
       }
