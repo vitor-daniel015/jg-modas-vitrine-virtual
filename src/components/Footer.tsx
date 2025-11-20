@@ -13,7 +13,7 @@ export const Footer = () => {
               Tradição desde 1981. Moda masculina moderna com qualidade, estilo e preço justo.
             </p>
             <br />
-          <p className="opacity-90">Feito por <a href="https://github.com/vitor-daniel015"><span className="text-accent text-lg font-bold">vitor-daniel015</span></a></p>
+          <p className="opacity-90">Feito por <a href="https://github.com/vitor-daniel015"><span className="text-accent text-lg font-bold">Vitor Daniel</span></a> - <a href="https://api.whatsapp.com/send?phone=5515998571316">(15) 99857-1316</a></p>
           </div>
 
           <div>

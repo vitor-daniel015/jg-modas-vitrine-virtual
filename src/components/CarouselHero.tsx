@@ -18,7 +18,7 @@ import { Loader2 } from "lucide-react";
 export const CarouselHero = () => {
   // Configuração do Autoplay: toca a cada 5 segundos e interrompe no hover
   const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
+    Autoplay({ delay: 10000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   // NOVO: Busca dinâmica dos slides

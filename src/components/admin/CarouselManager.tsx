@@ -30,7 +30,7 @@ export default function CarouselManager() {
       const { data, error } = await supabase
         .from('hero_slides')
         .select('*')
-        .order('display_order'); // Ordena para manter a ordem do carrossel
+        .order('display_order');
       if (error) throw error;
       return data;
     },
@@ -159,7 +159,6 @@ export default function CarouselManager() {
     }
     
     setIsUploading(true);
-    // Próxima ordem é o número de slides atuais + 1
     const nextOrder = (slides?.length || 0) + 1;
     
     uploadMutation.mutate({ file: imageFile, altText, nextOrder });
