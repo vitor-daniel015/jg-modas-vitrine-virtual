@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
@@ -17,7 +17,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <img src="\public\img\loguinho.png" alt="" className="h-8 w-50 flex"/>
+          <img src="\public\img\logo.png" alt="" className="h-8 w-50 flex"/>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
@@ -30,6 +30,11 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+             <Link to="/auth">
+              <Button variant="outline" size="icon">
+                <User className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
