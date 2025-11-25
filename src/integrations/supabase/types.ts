@@ -71,7 +71,7 @@ export type Database = {
           images: string[] | null
           is_promotion: boolean | null
           name: string
-          price: number
+          price: number | null
           promotion_price: number | null
           sizes: string[] | null
           stock: number | null
@@ -85,7 +85,7 @@ export type Database = {
           images?: string[] | null
           is_promotion?: boolean | null
           name: string
-          price: number
+          price: number | null
           promotion_price?: number | null
           sizes?: string[] | null
           stock?: number | null
@@ -99,7 +99,7 @@ export type Database = {
           images?: string[] | null
           is_promotion?: boolean | null
           name?: string
-          price?: number
+          price?: number | null
           promotion_price?: number | null
           sizes?: string[] | null
           stock?: number | null

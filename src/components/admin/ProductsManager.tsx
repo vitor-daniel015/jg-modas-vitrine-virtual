@@ -97,7 +97,7 @@ export default function ProductsManager() {
       const { error } = await supabase.from('products').insert({
         ...data,
         images: imageUrls,
-        price: parseFloat(data.price),
+        price: data.price ? parseFloat(data.price) : null,
         promotion_price: data.promotion_price ? parseFloat(data.promotion_price) : null,
         stock: parseInt(data.stock),
       });
@@ -124,7 +124,7 @@ export default function ProductsManager() {
       const { error } = await supabase.from('products').update({
         name: data.name,
         description: data.description,
-        price: parseFloat(data.price),
+        price: data.price ? parseFloat(data.price) : null,
         promotion_price: data.promotion_price ? parseFloat(data.promotion_price) : null,
         stock: parseInt(data.stock),
         category_id: data.category_id,
@@ -191,7 +191,7 @@ export default function ProductsManager() {
     setFormData({
       name: product.name,
       description: product.description || '',
-      price: product.price.toString(),
+      price: product.price != null ? product.price.toString() : '',
       promotion_price: product.promotion_price?.toString() || '',
       stock: product.stock?.toString() || '',
       category_id: product.category_id || '',
@@ -308,7 +308,6 @@ export default function ProductsManager() {
                       step="0.01"
                       value={formData.price}
                       onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                      required
                     />
                   </div>
                   
@@ -437,7 +436,9 @@ export default function ProductsManager() {
                 <TableRow key={product.id}>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>{product.categories?.name}</TableCell>
-                  <TableCell>R$ {product.price}</TableCell>
+                  <TableCell>
+                    {product.price != null ? `R$ ${Number(product.price).toFixed(2)}` : '—'}
+                  </TableCell>
                   <TableCell>{product.stock}</TableCell>
                   <TableCell className="text-right space-x-2">
                     <Button size="sm" variant="outline" onClick={() => handleEdit(product)}>

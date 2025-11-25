@@ -135,17 +135,21 @@ const Catalog = () => {
                     </p>
                     
                     <div className="flex items-center gap-2 mb-3">
-                      {product.is_promotion && product.promotion_price ? (
+                      {product.is_promotion && product.promotion_price != null && product.price != null ? (
                         <>
                           <span className="text-sm text-muted-foreground line-through">
-                            R$ {product.price.toFixed(2)}
+                            R$ {Number(product.price).toFixed(2)}
                           </span>
                           <span className="text-xl font-bold text-accent">
-                            R$ {product.promotion_price.toFixed(2)}
+                            R$ {Number(product.promotion_price).toFixed(2)}
                           </span>
                         </>
+                      ) : product.price != null ? (
+                        <span className="text-xl font-bold">R$ {Number(product.price).toFixed(2)}</span>
+                      ) : product.promotion_price != null ? (
+                        <span className="text-xl font-bold">R$ {Number(product.promotion_price).toFixed(2)}</span>
                       ) : (
-                        <span className="text-xl font-bold">R$ {product.price.toFixed(2)}</span>
+                        <span className="text-sm text-muted-foreground">Preço sob consulta</span>
                       )}
                     </div>
 

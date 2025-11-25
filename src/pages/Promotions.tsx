@@ -73,8 +73,8 @@ const Promotions = () => {
                       </div>
                     )}
                     <Badge className="absolute top-2 right-2 bg-accent">
-                      {product.promotion_price && product.price ? 
-                        `-${Math.round((1 - product.promotion_price / product.price) * 100)}%` 
+                      {product.promotion_price != null && product.price != null && product.price !== 0 ?
+                        `-${Math.round((1 - product.promotion_price / product.price) * 100)}%`
                         : 'Promoção'}
                     </Badge>
                   </div>
@@ -86,12 +86,22 @@ const Promotions = () => {
                     </p>
                     
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-sm text-muted-foreground line-through">
-                        R$ {product.price.toFixed(2)}
-                      </span>
-                      <span className="text-xl font-bold text-accent">
-                        R$ {(product.promotion_price || product.price).toFixed(2)}
-                      </span>
+                      {product.price != null && product.promotion_price != null ? (
+                        <>
+                          <span className="text-sm text-muted-foreground line-through">
+                            R$ {Number(product.price).toFixed(2)}
+                          </span>
+                          <span className="text-xl font-bold text-accent">
+                            R$ {Number(product.promotion_price).toFixed(2)}
+                          </span>
+                        </>
+                      ) : product.price != null ? (
+                        <span className="text-xl font-bold">R$ {Number(product.price).toFixed(2)}</span>
+                      ) : product.promotion_price != null ? (
+                        <span className="text-xl font-bold">R$ {Number(product.promotion_price).toFixed(2)}</span>
+                      ) : (
+                        <span className="text-sm text-muted-foreground">Preço sob consulta</span>
+                      )}
                     </div>
 
                     {product.sizes && product.sizes.length > 0 && (

@@ -150,7 +150,9 @@ const Index = () => {
                   </div>
                   <CardContent className="p-4">
                     <h3 className="font-semibold mb-2">{product.name}</h3>
-                    <p className="text-lg font-bold">R$ {product.price.toFixed(2)}</p>
+                    <p className="text-lg font-bold">
+                      {product.price != null ? `R$ ${Number(product.price).toFixed(2)}` : 'Preço sob consulta'}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
