@@ -8,6 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, MessageCircle } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 const Catalog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -110,7 +111,7 @@ const Catalog = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts?.map((product) => (
                 <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="aspect-square bg-secondary relative overflow-hidden">
+                  <div className="bg-secondary relative overflow-hidden" style={{aspectRatio: 9/16}}>
                     {product.images?.[0] ? (
                       <img
                         src={product.images[0]}

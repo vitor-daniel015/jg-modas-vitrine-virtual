@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, ShoppingBag, CreditCard, Tags, Truck, Phone } from "lucide-react";
+import { Star, ShoppingBag, CreditCard, Tags, Truck, Phone, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CarouselHero } from "@/components/CarouselHero"; // NOVO: Importa o componente do carrossel
 
@@ -30,6 +30,10 @@ const Index = () => {
     },
   });
 
+  const instagramHandle = () => {
+    window.location.href = 'https://www.instagram.com/jgmodass__?igsh=MXJ4bWhwbXppOTc5cg=='
+  }
+
   // Classes de hover combinadas: levanta, aumenta a sombra e adiciona borda dourada.
   const hoverClasses = "border-2 border-transparent hover:border-gold hover:-translate-y-1 hover:shadow-2xl transition-all duration-300";
 
@@ -47,7 +51,8 @@ const Index = () => {
               {storeInfo?.hero_subtitle || "Moda masculina moderna com qualidade, estilo e preço justo"}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-center gap-5">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/catalogo">
                 <Button size="lg" className="text-lg px-8">
                   <ShoppingBag className="mr-2 h-15 w-15" />
@@ -60,6 +65,13 @@ const Index = () => {
                   Promoções
                 </Button>
               </Link>
+              </div>
+              <div>
+                <Button onClick={instagramHandle} size="lg" variant="outline" className="text-lg px-8 bg-gradient-to-r from-rose-500 to-red-600 text-white">
+                  <Instagram className="mr-2 h-15 w-15" />
+                  Instagram
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -123,7 +135,7 @@ const Index = () => {
                   key={product.id} 
                   className={`overflow-hidden ${hoverClasses}`}
                 >
-                  <div className="aspect-square bg-secondary relative overflow-hidden">
+                  <div className=" bg-secondary relative overflow-hidden" style={{aspectRatio: 9/16}}>
                     {product.images?.[0] ? (
                       <img
                         src={product.images[0]}
