@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# JG Modas - Vitrine Virtual
 
-## Project info
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-**URL**: https://lovable.dev/projects/f88d0675-22f8-4154-a665-7862ed93814a
+Uma aplicação web moderna de vitrine virtual e landing page desenvolvida para a **JG Modas**. O projeto serve como catálogo digital para facilitar a visualização de produtos, promoções e o contato direto via WhatsApp, contando também com um painel administrativo completo para gestão de conteúdo.
 
-## How can I edit this code?
+## 📋 Funcionalidades
 
-There are several ways of editing your application.
+### Área Pública (Cliente)
+* **Vitrine Interativa:** Apresentação de produtos em destaque e carrossel promocional.
+* **Catálogo Completo:** Visualização de produtos filtrados por categorias.
+* **Detalhes do Produto:** Preço, tamanhos disponíveis e fotos.
+* **Integração com WhatsApp:** Botões de "Call to Action" que direcionam o cliente para o WhatsApp da loja para finalizar a compra/reserva.
+* **Páginas Institucionais:** "Nosso Estilo" e informações sobre a tradição da loja.
 
-**Use Lovable**
+### Painel Administrativo (Restrito)
+Gestão completa do conteúdo do site via interface amigável:
+* **Produtos:** Adicionar, editar e remover produtos (com upload de imagens).
+* **Categorias:** Gerenciar categorias de roupas (Masculino, Feminino, Unissex).
+* **Carrossel:** Alterar os banners da página inicial.
+* **Avaliações:** Gerenciar depoimentos de clientes exibidos no site.
+* **Informações da Loja:** Atualizar textos institucionais, links sociais e número de contato.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f88d0675-22f8-4154-a665-7862ed93814a) and start prompting.
+## 🚀 Tecnologias Utilizadas
 
-Changes made via Lovable will be committed automatically to this repo.
+* **Frontend:** React, TypeScript, Vite
+* **Estilização:** Tailwind CSS, Shadcn/ui (Radix UI)
+* **Gerenciamento de Estado/Data:** React Query (@tanstack/react-query)
+* **Roteamento:** React Router DOM
+* **Formulários:** React Hook Form + Zod
+* **Backend / Banco de Dados:** Supabase (PostgreSQL, Auth, Storage)
+* **Ícones:** Lucide React
 
-**Use your preferred IDE**
+## 🗄️ Estrutura do Banco de Dados (Supabase)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+O projeto utiliza as seguintes tabelas principais:
+* `products`: Armazena informações dos itens (nome, preço, estoque, imagens).
+* `categories`: Categorização dos produtos.
+* `reviews`: Depoimentos de clientes.
+* `store_info`: Configurações dinâmicas do site (títulos, contatos).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🔧 Pré-requisitos
 
-Follow these steps:
+* Node.js (versão 18+ ou superior)
+* Gerenciador de pacotes (npm, yarn ou bun)
+* Conta no Supabase
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📦 Como rodar o projeto
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/vitor-daniel015/jg-modas-vitrine-virtual.git](https://github.com/vitor-daniel015/jg-modas-vitrine-virtual.git)
+    cd jg-modas-vitrine-virtual
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2.  **Instale as dependências:**
+    ```bash
+    # Se estiver usando npm
+    npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+    # Se estiver usando bun (recomendado, visto o arquivo bun.lockb)
+    bun install
+    ```
 
-**Edit a file directly in GitHub**
+3.  **Configure as Variáveis de Ambiente:**
+    Crie um arquivo `.env` na raiz do projeto com as credenciais do seu projeto Supabase:
+    ```env
+    VITE_SUPABASE_URL=sua_url_do_supabase
+    VITE_SUPABASE_ANON_KEY=sua_chave_anon_do_supabase
+    ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4.  **Configure o Banco de Dados:**
+    Execute os scripts SQL localizados na pasta `supabase/migrations` no editor SQL do seu painel Supabase para criar as tabelas e políticas de segurança (RLS).
 
-**Use GitHub Codespaces**
+5.  **Execute o projeto:**
+    ```bash
+    npm run dev
+    # ou
+    bun dev
+    ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+O projeto estará rodando em `http://localhost:8080` (ou a porta indicada pelo Vite).
 
-## What technologies are used for this project?
+## 🛡️ Autenticação Admin
 
-This project is built with:
+Para acessar a rota `/admin`, é necessário estar autenticado. A autenticação é gerenciada pelo Supabase Auth. Certifique-se de criar um usuário no painel do Supabase e configurar a lógica de verificação de administrador (campo `isAdmin` ou tabela de perfis, conforme implementado nos hooks).
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🤝 Contribuição
 
-## How can I deploy this project?
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
 
-Simply open [Lovable](https://lovable.dev/projects/f88d0675-22f8-4154-a665-7862ed93814a) and click on Share -> Publish.
+1.  Faça um Fork do projeto
+2.  Crie uma Branch para sua Feature (`git checkout -b feature/MinhaFeature`)
+3.  Faça o Commit (`git commit -m 'Adicionando funcionalidade X'`)
+4.  Faça o Push (`git push origin feature/MinhaFeature`)
+5.  Abra um Pull Request
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+Desenvolvido por [Vitor Daniel](https://github.com/vitor-daniel015)
